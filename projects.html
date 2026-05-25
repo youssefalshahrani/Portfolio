@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Youssef Sultan Alshahrani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #833B3F;
+            --dark-color: #1D0D0E;
+            --light-bg: #FDFBFB;
+            --card-bg: #FFFFFF;
+            --text-muted: #665556;
+            --border-color: #E6E1E1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Project Sections */
+        .project-section {
+            max-width: 1140px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--dark-color);
+            position: relative;
+            margin-bottom: 35px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Work Card Design */
+        .work-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(29, 13, 14, 0.02);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 25px rgba(29, 13, 14, 0.08);
+        }
+
+        /* الحاوية المربعة المحسنة */
+        .image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* نسبة عرض إلى ارتفاع مربعة تماماً */
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        /* تأثير الهوفر للتصفح */
+        .image-container::after {
+            content: '\f1c1'; 
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(131, 59, 63, 0.75);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+.card-body h4 {
+    font-weight: 400;
+}
+
+        .image-container::before {
+            content: 'View PDF Document';
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: absolute;
+            bottom: 25%; left: 0; width: 100%;
+            color: white;
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-card:hover .image-container::after,
+        .work-card:hover .image-container::before {
+            opacity: 1;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* لقص وتوسيط الصورة داخل المربع دون تمديدها */
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        /* Lightbox PDF Overlay Styling */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(29, 13, 14, 0.92);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 30px;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .pdf-container {
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .lightbox-overlay.active .pdf-container {
+            transform: scale(1);
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: white;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            z-index: 2100;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 100px;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Responsiveness Media Queries */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .pdf-container {
+                width: 100%;
+                height: 80vh;
+            }
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+     <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Youssef Alshahrani</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="architecture" class="project-section">
+        <h2 class="section-title">Information Architecture & Sitemap Design</h2>
+        
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="Information-architecture-writing-and sitemap-design-Laylah-Platform.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Laylah.png" alt="Laylah Platform">
+                </div>
+                <div class="card-body">
+                    <h3>Laylah Platform</h3>
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="Information-architecture-writing-and sitemap-design-04.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Himma.png" alt="Himma Academy">
+                </div>
+                <div class="card-body">
+                    <h3>Himma App</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <section id="Prototype" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title">Prototype & Wireframe Design</h2>
+        
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="PROTOTYPE-Spero-App.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Spero.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Spero App</h3>
+                                        <h4>User Interfaces</h4>
+
+                </div>
+            </div>
+
+
+            <div class="work-card" data-pdf="PROTOTYPE-Intelligent-Monitoring-App.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Intelligent-Monitoring.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Intelligent Monitoring App</h3>
+                                        <h4>User Interfaces</h4>
+
+                </div>
+            </div>
+
+            
+
+            <div class="work-card" data-pdf="PROTOTYPE-IKEA-App.pdf">
+                <div class="image-container">
+                    <img src="LOGO-IKEA.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>IKEA App </h3>
+                                        <h4>User Interfaces</h4>
+
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="PROTOTYPE-Hyundai-website.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Hyundai.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Hyundai website</h3>
+                    <h4>User Interfaces</h4>
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="WIREFRAME-Rocket-App.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Rocket.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Rocket App</h3>
+                     <h4>Wireframe</h4>
+                </div>
+            </div>
+
+
+                      <div class="work-card" data-pdf="PROTOTYPE-Rocket-App.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Rocket.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Rocket App</h3>
+                    <h4>User Interfaces</h4>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+    
+
+    <section id="Persona" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title">Persona Writing</h2>
+        
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="Writing-and-design-persona-Laylah-Platform.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Laylah Platform</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    
+    <section id="UESI" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title"> Usability Evaluation, User Surveys and Interviews</h2>
+        
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="Conducting Usability Evaluation, User Survey Design, and Interviews for the Laylah Platform.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Laylah Platform</h3>
+                    <h4> Usability Evaluation & User Survey and Interviews
+</h4>
+                </div>
+            </div>
+
+
+                    
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="User Survey Writeing and Design (Laylah Platform and Mobily App).pdf">
+                <div class="image-container">
+                    <img src="LOGO-M-L.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Laylah Platform and Mobily App</h3>
+                    <h4>User Survey Writeing and Design
+</h4>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+
+
+
+    
+    <section id="DVD" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title"> Data Visualization Design</h2>
+        
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="Data-Visualization-Design-Laylah-Platform.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>Laylah Platform</h3>
+                </div>
+            </div>
+
+
+                    
+        <div class="gallery-grid">
+            <div class="work-card" data-pdf="Data-Visualization-Design-IKEA.pdf">
+                <div class="image-container">
+                    <img src="LOGO-IKEA.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3>IKEA App</h3>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+
+
+
+
+            
+<section id="graphic design" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title"> Graphic Design</h2>
+        
+        <div class="gallery-grid">
+            
+            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-02.pdf">
+                <div class="image-container">
+                    <img src="Logo-Kham.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> Book and novel Formating and Design</h3>
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-03.pdf">
+                <div class="image-container">
+                    <img src="Logo-Kham.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> Book and novel Formating and Design</h3>
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-01.pdf">
+                <div class="image-container">
+                    <img src="LOgo-Shafag.jpg" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> Book and novel Formating and Design</h3>
+                </div>
+            </div>
+
+            <div class="work-card" data-pdf="GRAPHIC-DESIGNER.pdf">
+                <div class="image-container">
+                    <img src="LOGO-M-M-K-K.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> Posts Design</h3>
+                </div>
+            </div>
+
+        </div> </section>
+
+
+    
+        Project and Team Management & Leadership
+
+        
+        
+
+
+
+
+
+            
+<section id="    Report Preparation
+" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title">     Report Preparation
+</h2>
+        
+        <div class="gallery-grid">
+            
+            <div class="work-card" data-pdf="REPORT-PREPARATION-04.pdf">
+                <div class="image-container">
+                    <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> Laylah Platform</h3>
+                </div>
+            </div>
+
+        </div> </section>
+
+
+
+
+         
+<section id="  Photography
+" class="project-section" style="border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 class="section-title">  Photography
+</h2>
+        
+        <div class="gallery-grid">
+            
+            <div class="work-card" data-pdf="Photography.pdf">
+                <div class="image-container">
+                    <img src="LOGO-YOUSSEF.png" alt="Target User Persona Profile">
+                </div>
+                <div class="card-body">
+                    <h3> </h3>
+                </div>
+            </div>
+
+        </div> </section>
+
+    
+
+            
+    </section>
+
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+        <div class="pdf-container">
+            <iframe src="" class="pdf-iframe" id="pdfIframe"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>All rights reserved © Youssef Sultan Alshahrani 2026</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Makkah, Kingdom of Saudi Arabia</p>
+    </footer>
+
+    <script>
+        const overlay = document.getElementById('lightboxOverlay');
+        const pdfIframe = document.getElementById('pdfIframe');
+        const closeBtn = document.getElementById('lightboxClose');
+        const cards = document.querySelectorAll('.work-card');
+
+        // عند الضغط على أي كارد، يقرأ مسار الـ PDF ويفتحه بالنافذة المنبثقة
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const pdfUrl = card.getAttribute('data-pdf');
+                if (pdfUrl) {
+                    pdfIframe.src = pdfUrl;
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // إغلاق عبر الزر الإكس
+        closeBtn.addEventListener('click', closeLightbox);
+
+        // إغلاق عبر الضغط خارج خلفية النافذة
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeLightbox();
+            }
+        });
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { pdfIframe.src = ''; }, 300);
+        }
+
+        // إغلاق عند الضغط على زر Escape في لوحة المفاتيح
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>
