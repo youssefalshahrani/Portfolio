@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youssef Sultan Alshahrani | UX Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #833B3F;
+            --dark-color: #1D0D0E;
+            --light-bg: #FDFBFB;
+            --card-bg: #FFFFFF;
+            --text-muted: #665556;
+            --border-color: #E6E1E1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Projects Link Highlight */
+        .nav-links a.projects-btn {
+            color: var(--primary-color);
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .nav-links a.projects-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            max-width: 1140px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .hero-image-container {
+            flex: 0 0 320px;
+            height: 320px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid var(--primary-color);
+            box-shadow: 0 15px 30px rgba(29, 13, 14, 0.1);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Buttons & Interactions */
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Primary Email Button */
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* General Sections */
+        section {
+            max-width: 1140px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            position: relative;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Skills Grid - Reduced Card Size minmax(180px) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(29, 13, 14, 0.05);
+            border-color: var(--primary-color);
+        }
+
+        .skill-card i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .skill-card span {
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+
+        /* Experience & Education Timeline */
+        .timeline {
+            position: relative;
+            border-left: 3px solid var(--border-color);
+            padding-left: 30px;
+            margin-left: 15px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -36.5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            border: 3px solid var(--primary-color);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 100px;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column-reverse;
+                text-align: center;
+                margin: 40px auto;
+                gap: 30px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-image-container {
+                flex: 0 0 240px;
+                height: 240px;
+            }
+
+            .contact-buttons {
+                justify-content: center;
+            }
+
+            .hero-text p {
+                text-align: center;
+            }
+
+            /* Hide descriptive links but KEEP identity and Projects visible */
+            .nav-links li:not(.always-visible) {
+                display: none;
+            }
+        }
+
+        /* Mobile Specific - Smaller Card Sizes & Typography */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 15px;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .nav-links a.projects-btn {
+                font-size: 0.85rem;
+                padding: 5px 10px;
+            }
+            .hero-section {
+                margin: 25px auto;
+                padding: 0 15px;
+            }
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+            .hero-text h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            .hero-text p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            .hero-image-container {
+                flex: 0 0 180px;
+                height: 180px;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.88rem;
+                width: 100%; /* Full width buttons on tiny screens for better UX */
+            }
+            section {
+                margin: 45px auto;
+                padding: 0 15px;
+            }
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 25px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+            .skill-card {
+                padding: 12px;
+                gap: 8px;
+            }
+            .skill-card span {
+                font-size: 0.8rem;
+            }
+            .timeline {
+                padding-left: 20px;
+                margin-left: 5px;
+            }
+            .timeline-item::after {
+                left: -26.5px;
+            }
+            .timeline-title {
+                font-size: 1.05rem;
+            }
+            .timeline-subtitle {
+                font-size: 0.9rem;
+            }
+            .timeline-desc {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Youssef Alshahrani</a>
+            <ul class="nav-links">
+               
+                <li class="always-visible"><a href="projects.html" class="projects-btn">Projects</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero-section" id="about">
+        <div class="hero-text">
+            <h1>Youssef Sultan Alshahrani</h1>
+            <h2>UI/UX Design Specialist</h2>
+            <p>
+I am a student majoring in Human-Computer Interaction (HCI) with over 8 years of experience in graphic design, editing, and photography, with a primary focus on user experience (UX) design and optimization. I work to deeply understand user needs through user research, such as surveys, interviews, and observing user behavior, as well as analyzing the problems they face to identify opportunities for experience improvement. I have experience in information architecture design, sitemap and wireframe development, as well as designing interface wireframe and prototypes, conducting usability testing, and comprehensively analyzing and improving customer journey. I am also passionate about team and project management, business analysis and development, and the design and automation of systems and processes, with practical experience in leading and executing projects and improving workflows and overall user experience.            </p>
+            <div class="contact-buttons">
+                <a href="mailto:youssefalshahrani@hotmail.com" class="btn btn-primary">
+                    <i class="fa-regular fa-envelope"></i> Contact me via Email
+                </a>
+                <a href="https://wa.me/966500073285?text=Hello%20Youssef,%20I%20viewed%20your%20profile%20and%20would%20like%20to%20get%20in%20touch." target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Contact via WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="Prosonal-Photo.png" alt="Youssef Sultan Alshahrani">
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Key Technical and Professional Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><i class="fa-solid fa-sitemap"></i><span>Information Architecture and Site Map Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-pen-nib"></i><span>Interface Prototype and Wireframe and Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-user-gear"></i><span>Persona Writing and Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-magnifying-glass"></i><span>Usability Evaluation</span></div>
+            <div class="skill-card"><i class="fa-solid fa-comments"></i><span>Conducting User Surveys and Interviews</span></div>
+            <div class="skill-card"><i class="fa-solid fa-chart-line"></i><span>Enhancing User Experience in Business</span></div>
+            <div class="skill-card"><i class="fa-solid fa-rotate"></i><span>Iterative Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-display"></i><span>Visual Simulation</span></div>
+
+            <div class="skill-card"><i class="fa-solid fa-users-gear"></i><span>Project and Team Management & Leadership</span></div>
+            <div class="skill-card"><i class="fa-solid fa-lightbulb"></i><span>Problem Analysis, Solving & Development</span></div>
+            <div class="skill-card"><i class="fa-solid fa-briefcase"></i><span>Business and Project Analysis</span></div>
+            <div class="skill-card"><i class="fa-solid fa-robot"></i><span>Systems and Process Design & Automation</span></div>
+            <div class="skill-card"><i class="fa-solid fa-headset"></i><span>Customer Service Management</span></div>
+            <div class="skill-card"><i class="fa-solid fa-calculator"></i><span>Financial Management and Accounting</span></div>
+            <div class="skill-card"><i class="fa-solid fa-cart-shopping"></i><span>E-commerce Management & Development</span></div>
+            <div class="skill-card"><i class="fa-solid fa-warehouse"></i><span>Warehouse and Inventory Management for Digital Libraries</span></div>
+            <div class="skill-card"><i class="fa-solid fa-file-invoice"></i><span>Report Preparation</span></div>
+            <div class="skill-card"><i class="fa-solid fa-chart-pie"></i><span>Market Analysis</span></div>
+
+            <div class="skill-card"><i class="fa-solid fa-palette"></i><span>Posts Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-book-open"></i><span>Book Interior Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-chalkboard-user"></i><span>Presentation Design</span></div>
+            <div class="skill-card"><i class="fa-solid fa-camera"></i><span>Photography</span></div>
+            <div class="skill-card"><i class="fa-solid fa-video"></i><span>Editing</span></div>
+            <div class="skill-card"><i class="fa-solid fa-sliders"></i><span>Stage Lighting and Sound Engineering</span></div>
+
+            <div class="skill-card"><i class="fa-brands fa-figma"></i><span>Figma</span></div>
+            <div class="skill-card"><i class="fa-solid fa-file-pdf"></i><span>Adobe InDesign</span></div>
+            <div class="skill-card"><i class="fa-solid fa-bezier-curve"></i><span>Adobe Illustrator</span></div>
+            <div class="skill-card"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Adobe Lightroom</span></div>
+            <div class="skill-card"><i class="fa-solid fa-clapperboard"></i><span>Adobe Premiere Pro</span></div>
+            <div class="skill-card"><i class="fa-regular fa-file-word"></i><span>Microsoft Word</span></div>
+            <div class="skill-card"><i class="fa-regular fa-file-excel"></i><span>Microsoft Excel</span></div>
+            <div class="skill-card"><i class="fa-regular fa-file-powerpoint"></i><span>Microsoft PowerPoint</span></div>
+            <div class="skill-card"><i class="fa-solid fa-cloud"></i><span>Microsoft OneDrive & Microsoft Teams</span></div>
+            <div class="skill-card"><i class="fa-solid fa-layer-group"></i><span>Canva</span></div>
+            <div class="skill-card"><i class="fa-solid fa-store"></i><span>Salla</span></div>
+            <div class="skill-card"><i class="fa-solid fa-truck-fast"></i><span>OTO</span></div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2026 - 2026</div>
+                <div class="timeline-title">CO-FOUNDER</div>
+                <div class="timeline-subtitle">Himma Academy</div>
+                <div class="timeline-desc">
+                    • Project and Team Management & Leadership.<br>
+                    • Business and Project Analysis & Development.<br>
+                    • Market Analysis.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - 2025</div>
+                <div class="timeline-title">CHIEF EXECUTIVE OFFICER</div>
+                <div class="timeline-subtitle">Kham Company, Kham Publishing</div>
+                <div class="timeline-desc">
+                    • Project and Team Management & Leadership.<br>
+                    • Business and Project Analysis & Development.<br>
+                    • Systems and Process Design & Automation.<br>
+                    • Financial Management and Accounting.<br>
+                    • Market Analysis.<br>
+                    • Iterative Design.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - 2025</div>
+                <div class="timeline-title">ONLINE STORE MANAGER</div>
+                <div class="timeline-subtitle">Kham Bookstore</div>
+                <div class="timeline-desc">
+                    • Analyzing and Improving user experience.<br>
+                    • Project and Team Management & Leadership.<br>
+                    • Systems and Process Design & Automation.<br>
+                    • Customer Service Management.<br>
+                    • Financial Management and Accounting.<br>
+                    • Warehouse and Inventory Management.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2025 - Present</div>
+                <div class="timeline-title">GRAPHIC DESIGNER</div>
+                <div class="timeline-subtitle">Kham Company, Himma Academy, Kafa Association</div>
+                <div class="timeline-desc">
+                    • Posts Design.<br>
+                    • Book Interior Design.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2017 - 2025</div>
+                <div class="timeline-title">EDITOR & PHOTOGRAPHER</div>
+                <div class="timeline-subtitle">Kafa Association, Ensan Academy, Waga</div>
+                <div class="timeline-desc">
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2017 - 2019</div>
+                <div class="timeline-title">STAGE LIGHTING AND SOUND SUPERVISOR</div>
+                <div class="timeline-subtitle">Solidarity Point Foundation</div>
+                <div class="timeline-desc">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Youssef Alshahrani. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
