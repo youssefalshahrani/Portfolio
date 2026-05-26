@@ -638,7 +638,53 @@
                 closeLightbox();
             }
         });
-    </script>
+    </script> 
+
+
+    <script>
+    const overlay = document.getElementById('lightboxOverlay');
+    const pdfIframe = document.getElementById('pdfIframe');
+    const closeBtn = document.getElementById('lightboxClose');
+    const cards = document.querySelectorAll('.work-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const pdfUrl = card.getAttribute('data-pdf');
+            if (pdfUrl) {
+                // التحقق مما إذا كان المستخدم يتصفح من الجوال (شاشة أصغر من 768 بكسل)
+                if (window.innerWidth <= 768) {
+                    // فتح الملف في تبويب جديد تماماً على الجوال
+                    window.open(pdfUrl, '_blank');
+                } else {
+                    // فتح الملف في البوب أب المعتاد على اللاب توب والكمبيوتر
+                    pdfIframe.src = pdfUrl;
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            closeLightbox();
+        }
+    });
+
+    function closeLightbox() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => { pdfIframe.src = ''; }, 300);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+</script>
 
 </body>
 </html>
