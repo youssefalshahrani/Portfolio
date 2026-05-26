@@ -120,14 +120,14 @@
             border-radius: 2px;
         }
 
-        /* Gallery Grid - Reduced from 280px to 230px for smaller cards */
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 20px;
         }
 
-        /* Work Card Design */
+        /* Work Card Design - تحويل التنسيق ليدعم وسم <a> بشكل متناسق */
         .work-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -136,6 +136,9 @@
             box-shadow: 0 4px 10px rgba(29, 13, 14, 0.02);
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none; /* إزالة الخطوط الافتراضية للروابط */
+            display: block; /* لجعل الكرت بالكامل قابل للضغط */
+            color: var(--dark-color);
         }
 
         .work-card:hover {
@@ -147,7 +150,7 @@
         /* الحاوية المربعة المحسنة */
         .image-container {
             width: 100%;
-            aspect-ratio: 1 / 1; /* نسبة عرض إلى ارتفاع مربعة تماماً */
+            aspect-ratio: 1 / 1;
             overflow: hidden;
             background-color: #f0f0f0;
             border-bottom: 1px solid var(--border-color);
@@ -197,7 +200,7 @@
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* لقص وتوسيط الصورة داخل المربع دون تمديدها */
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
@@ -220,69 +223,6 @@
             font-size: 0.85rem;
         }
 
-        /* Lightbox PDF Overlay Styling */
-        .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(29, 13, 14, 0.92);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 30px;
-        }
-
-        .lightbox-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .pdf-container {
-            width: 90%;
-            max-width: 1000px;
-            height: 85vh;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .lightbox-overlay.active .pdf-container {
-            transform: scale(1);
-        }
-
-        .pdf-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            color: white;
-            font-size: 2.2rem;
-            cursor: pointer;
-            transition: color 0.2s;
-            background: none;
-            border: none;
-            z-index: 2100;
-        }
-
-        .lightbox-close:hover {
-            color: var(--primary-color);
-        }
-
         /* Footer */
         footer {
             background-color: var(--dark-color);
@@ -299,18 +239,8 @@
 
         /* Responsiveness Media Queries */
         @media (max-width: 768px) {
-            /* Hide description links but KEEP identity and Projects button visible */
             .nav-links li:not(.always-visible) {
                 display: none;
-            }
-            .pdf-container {
-                width: 100%;
-                height: 80vh;
-            }
-            .lightbox-close {
-                top: 15px;
-                right: 15px;
-                font-size: 1.8rem;
             }
         }
 
@@ -334,7 +264,6 @@
                 font-size: 1.3rem;
                 margin-bottom: 25px;
             }
-            /* Make it 2 dynamic smaller columns on mobile instead of stacked 1 full column */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -360,7 +289,6 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Youssef Alshahrani</a>
             <ul class="nav-links">
-       
                 <li class="always-visible"><a href="index.html" class="projects-btn">About</a></li>
             </ul>
         </div>
@@ -370,23 +298,23 @@
         <h2 class="section-title">Information Architecture & Sitemap Design</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="Information-architecture-writing-and sitemap-design-Laylah-Platform.pdf">
+            <a href="Information-architecture-writing-and sitemap-design-Laylah-Platform.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Laylah.png" alt="Laylah Platform">
                 </div>
                 <div class="card-body">
                     <h3>Laylah Platform</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="Information-architecture-writing-and sitemap-design-04.pdf">
+            <a href="Information-architecture-writing-and sitemap-design-04.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Himma.jpg" alt="Himma Academy">
                 </div>
                 <div class="card-body">
                     <h3>Himma App</h3>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -394,7 +322,7 @@
         <h2 class="section-title">Prototype & Wireframe Design</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="PROTOTYPE-Spero-App.pdf">
+            <a href="PROTOTYPE-Spero-App.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Spero.png" alt="Target User Persona Profile">
                 </div>
@@ -402,9 +330,9 @@
                     <h3>Spero App</h3>
                     <h4>User Interfaces</h4>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="PROTOTYPE-Intelligent-Monitoring-App.pdf">
+            <a href="PROTOTYPE-Intelligent-Monitoring-App.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Intelligent-Monitoring.png" alt="Target User Persona Profile">
                 </div>
@@ -412,9 +340,9 @@
                     <h3>Intelligent Monitoring App</h3>
                     <h4>User Interfaces</h4>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="PROTOTYPE-IKEA-App.pdf">
+            <a href="PROTOTYPE-IKEA-App.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-IKEA.png" alt="Target User Persona Profile">
                 </div>
@@ -422,9 +350,9 @@
                     <h3>IKEA App </h3>
                     <h4>User Interfaces</h4>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="PROTOTYPE-Hyundai-website.pdf">
+            <a href="PROTOTYPE-Hyundai-website.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Hyundai.png" alt="Target User Persona Profile">
                 </div>
@@ -432,9 +360,9 @@
                     <h3>Hyundai website</h3>
                     <h4>User Interfaces</h4>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="WIREFRAME-Rocket-App.pdf">
+            <a href="WIREFRAME-Rocket-App.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Rocket.png" alt="Target User Persona Profile">
                 </div>
@@ -442,9 +370,9 @@
                     <h3>Rocket App</h3>
                     <h4>Wireframe</h4>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="PROTOTYPE-Rocket-App.pdf">
+            <a href="PROTOTYPE-Rocket-App.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Rocket.png" alt="Target User Persona Profile">
                 </div>
@@ -452,7 +380,7 @@
                     <h3>Rocket App</h3>
                     <h4>User Interfaces</h4>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -460,14 +388,14 @@
         <h2 class="section-title">Persona Writing</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="Writing-and-design-persona-Laylah-Platform.pdf">
+            <a href="Writing-and-design-persona-Laylah-Platform.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3>Laylah Platform</h3>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
     
@@ -475,7 +403,7 @@
         <h2 class="section-title"> Usability Evaluation, User Surveys and Interviews</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="Conducting Usability Evaluation, User Survey Design, and Interviews for the Laylah Platform.pdf">
+            <a href="Conducting Usability Evaluation, User Survey Design, and Interviews for the Laylah Platform.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
                 </div>
@@ -483,9 +411,9 @@
                     <h3>Laylah Platform</h3>
                     <h4> Usability Evaluation & User Survey and Interviews</h4>
                 </div>
-            </div>
+            </a>
                     
-            <div class="work-card" data-pdf="User Survey Writeing and Design (Laylah Platform and Mobily App).pdf">
+            <a href="User Survey Writeing and Design (Laylah Platform and Mobily App).pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-M-L.png" alt="Target User Persona Profile">
                 </div>
@@ -493,7 +421,7 @@
                     <h3>Laylah Platform and Mobily App</h3>
                     <h4>User Survey Writeing and Design</h4>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
     
@@ -501,23 +429,23 @@
         <h2 class="section-title"> Data Visualization Design</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="Data-Visualization-Design-Laylah-Platform.pdf">
+            <a href="Data-Visualization-Design-Laylah-Platform.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3>Laylah Platform</h3>
                 </div>
-            </div>
+            </a>
                     
-            <div class="work-card" data-pdf="Data-Visualization-Design-IKEA.pdf">
+            <a href="Data-Visualization-Design-IKEA.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-IKEA.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3>IKEA App</h3>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
             
@@ -525,41 +453,41 @@
         <h2 class="section-title"> Graphic Design</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-02.pdf">
+            <a href="GRAPHIC-DESIGNER-Book-02.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="Logo-Kham.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> Book and novel Formating and Design</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-03.pdf">
+            <a href="GRAPHIC-DESIGNER-Book-03.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="Logo-Kham.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> Book and novel Formating and Design</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="GRAPHIC-DESIGNER-Book-01.pdf">
+            <a href="GRAPHIC-DESIGNER-Book-01.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOgo-Shafag.jpg" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> Book and novel Formating and Design</h3>
                 </div>
-            </div>
+            </a>
 
-            <div class="work-card" data-pdf="GRAPHIC-DESIGNER.pdf">
+            <a href="GRAPHIC-DESIGNER.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-M-M-K-K.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> Posts Design</h3>
                 </div>
-            </div>
+            </a>
         </div> 
     </section>
 
@@ -567,14 +495,14 @@
         <h2 class="section-title"> Report Preparation</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="REPORT-PREPARATION-04.pdf">
+            <a href="REPORT-PREPARATION-04.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-Laylah.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> Laylah Platform</h3>
                 </div>
-            </div>
+            </a>
         </div> 
     </section>
 
@@ -582,109 +510,20 @@
         <h2 class="section-title"> Photography</h2>
         
         <div class="gallery-grid">
-            <div class="work-card" data-pdf="Photography.pdf">
+            <a href="Photography.pdf" target="_blank" class="work-card">
                 <div class="image-container">
                     <img src="LOGO-YOUSSEF.png" alt="Target User Persona Profile">
                 </div>
                 <div class="card-body">
                     <h3> </h3>
                 </div>
-            </div>
+            </a>
         </div> 
     </section>
 
-    <div class="lightbox-overlay" id="lightboxOverlay">
-        <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
-        <div class="pdf-container">
-            <iframe src="" class="pdf-iframe" id="pdfIframe"></iframe>
-        </div>
-    </div>
-
- 
-
-    <script>
-        const overlay = document.getElementById('lightboxOverlay');
-        const pdfIframe = document.getElementById('pdfIframe');
-        const closeBtn = document.getElementById('lightboxClose');
-        const cards = document.querySelectorAll('.work-card');
-
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const pdfUrl = card.getAttribute('data-pdf');
-                if (pdfUrl) {
-                    pdfIframe.src = pdfUrl;
-                    overlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-
-        closeBtn.addEventListener('click', closeLightbox);
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                closeLightbox();
-            }
-        });
-
-        function closeLightbox() {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            setTimeout(() => { pdfIframe.src = ''; }, 300);
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-    </script> 
-
-
-    <script>
-    const overlay = document.getElementById('lightboxOverlay');
-    const pdfIframe = document.getElementById('pdfIframe');
-    const closeBtn = document.getElementById('lightboxClose');
-    const cards = document.querySelectorAll('.work-card');
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const pdfUrl = card.getAttribute('data-pdf');
-            if (pdfUrl) {
-                // التحقق مما إذا كان المستخدم يتصفح من الجوال (شاشة أصغر من 768 بكسل)
-                if (window.innerWidth <= 768) {
-                    // فتح الملف في تبويب جديد تماماً على الجوال
-                    window.open(pdfUrl, '_blank');
-                } else {
-                    // فتح الملف في البوب أب المعتاد على اللاب توب والكمبيوتر
-                    pdfIframe.src = pdfUrl;
-                    overlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-        });
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            closeLightbox();
-        }
-    });
-
-    function closeLightbox() {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-        setTimeout(() => { pdfIframe.src = ''; }, 300);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
-</script>
+    <footer>
+        <p>&copy; 2026 Youssef Sultan Alshahrani. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
