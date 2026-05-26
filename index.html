@@ -126,7 +126,6 @@
             text-align: justify;
         }
 
-        /* تم تعديل الحاوية هنا لمنع تشوه الصورة وانضغاطها */
         .hero-image-container {
             flex: 0 0 320px;
             width: 320px;
@@ -169,7 +168,6 @@
             cursor: pointer;
         }
 
-        /* Primary Email Button */
         .btn-primary {
             background-color: var(--primary-color);
             color: white;
@@ -182,7 +180,6 @@
             border-color: var(--primary-color);
         }
 
-        /* WhatsApp Button */
         .btn-whatsapp {
             background-color: transparent;
             color: var(--primary-color);
@@ -220,7 +217,7 @@
             border-radius: 2px;
         }
 
-        /* Skills Grid - Reduced Card Size minmax(180px) */
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -331,7 +328,6 @@
                 font-size: 2.2rem;
             }
 
-            /* تحديث مقاس الحاوية للشاشات المتوسطة */
             .hero-image-container {
                 flex: 0 0 240px;
                 width: 240px;
@@ -346,13 +342,12 @@
                 text-align: center;
             }
 
-            /* Hide descriptive links but KEEP identity and Projects visible */
             .nav-links li:not(.always-visible) {
                 display: none;
             }
         }
 
-        /* Mobile Specific - Smaller Card Sizes & Typography */
+        /* Mobile Specific */
         @media (max-width: 480px) {
             .nav-container {
                 padding: 15px;
@@ -380,7 +375,6 @@
                 margin-bottom: 20px;
             }
             
-            /* تحديث مقاس وبنية الحاوية للشاشات الصغيرة جداً لمنع الاختفاء والتشوه */
             .hero-image-container {
                 flex: 0 0 180px;
                 width: 180px;
@@ -390,7 +384,7 @@
             .btn {
                 padding: 10px 18px;
                 font-size: 0.88rem;
-                width: 100%; /* Full width buttons on tiny screens for better UX */
+                width: 100%;
             }
             section {
                 margin: 45px auto;
@@ -429,7 +423,6 @@
             }
         }
     </style>
-
 </head>
 <body>
 
@@ -437,7 +430,6 @@
         <div class="nav-container">
             <a href="#" class="logo">Youssef Alshahrani</a>
             <ul class="nav-links">
-               
                 <li class="always-visible"><a href="projects.html" class="projects-btn">Projects</a></li>
             </ul>
         </div>
@@ -578,6 +570,24 @@ I am a student majoring in Human-Computer Interaction (HCI) with over 8 years of
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2026 Youssef Sultan Alshahrani. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // هذا الكود مخصص لصفحة المشاريع (projects.html) ليعمل مع ملفات الـ PDF مباشرة عند الضغط على الكروت
+        const cards = document.querySelectorAll('.work-card');
+        if (cards.length > 0) {
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const pdfUrl = card.getAttribute('data-pdf');
+                    if (pdfUrl) {
+                        window.open(pdfUrl, '_blank');
+                    }
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
